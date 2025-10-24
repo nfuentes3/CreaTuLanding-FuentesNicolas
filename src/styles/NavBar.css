@@ -1,7 +1,12 @@
-@import url("https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&family=Outfit:wght@100..900&display=swap");
 
-.navbar {
-  padding: 0 30px 0 30px;
-  font-family: "Nunito" sans-serif;
-  font-weight: bold;
+* {
+  font-family: "Nunito", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 600;
+  font-style: normal;
+}
+
+.top_nav {
+  background-color: #004e89;
 }

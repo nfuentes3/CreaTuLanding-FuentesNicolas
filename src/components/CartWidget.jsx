@@ -1,4 +1,4 @@
-import { Badge, Container } from "react-bootstrap";
+import { Badge } from "react-bootstrap";
 import { FaShoppingCart } from "react-icons/fa";
 
 let ItemCount = 1; // Item hardcodeado para en un futuro agregar logica
