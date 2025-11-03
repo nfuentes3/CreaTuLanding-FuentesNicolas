@@ -25,11 +25,7 @@ const MainHero = () => {
           Ver productos
         </Button>
       </div>
-      <img
-        src="public\img\cat_dog_hero.svg"
-        alt="Imagen del hero"
-        height={400}
-      />
+      <img src="/img/cat_dog_hero.svg" alt="Imagen del hero" height={400} />
     </Container>
   );
 };

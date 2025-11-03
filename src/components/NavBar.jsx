@@ -24,7 +24,7 @@ const NavBar = () => {
       <Navbar className="d-flex justify-content-between px-5">
         <Navbar.Brand>
           <img
-            src="public\img\Huellitas.shop_v2.svg"
+            src="/img/Huellitas.shop_v2.svg"
             height="40"
             className="d-inline-block align-top"
             alt="React Bootstrap logo"
