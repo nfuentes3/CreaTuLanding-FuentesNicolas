@@ -21,6 +21,12 @@ const MainHero = () => {
         <Button
           className="my-4 w-25 hero-animation"
           style={{ backgroundColor: "#004e89" }}
+          onClick={() => {
+            const el = document.getElementById("productos");
+            if (el) {
+              el.scrollIntoView({ behavior: "smooth", block: "start" });
+            }
+          }}
         >
           Ver productos
         </Button>

@@ -1,4 +1,5 @@
 import { Container, Nav, Navbar, NavDropdown } from "react-bootstrap";
+import { NavLink } from "react-router-dom";
 import { FaHome, FaWhatsapp, FaClock } from "react-icons/fa";
 import "../styles/NavBar.css";
 import CartWidget from "./CartWidget";
@@ -18,11 +19,14 @@ const NavBar = () => {
         </Navbar.Text>
         <Navbar.Text className="text-white">
           <FaClock className="mx-2" />
-          Fecha y hora actual
+          {new Date().toLocaleString("es-AR", {
+            dateStyle: "short",
+            timeStyle: "short",
+          })}
         </Navbar.Text>
       </Navbar>
       <Navbar className="d-flex justify-content-between px-5">
-        <Navbar.Brand>
+        <Navbar.Brand as={NavLink} to="/">
           <img
             src="/img/Huellitas.shop_v2.svg"
             height="40"
@@ -32,9 +36,12 @@ const NavBar = () => {
         </Navbar.Brand>
         <Nav className="d-flex justify-content-between align-items-center px-1 w-auto">
           <NavDropdown title="Productos">
-            <NavDropdown.Item>Categoria 1</NavDropdown.Item>
-            <NavDropdown.Item>Categoria 2</NavDropdown.Item>
-            <NavDropdown.Item>Categoria 3</NavDropdown.Item>
+            <NavDropdown.Item as={NavLink} to="/category/perro">
+              Perros
+            </NavDropdown.Item>
+            <NavDropdown.Item as={NavLink} to="/category/gato">
+              Gatos
+            </NavDropdown.Item>
           </NavDropdown>
           <Nav.Item className="px-3 mx-2">Contacto</Nav.Item>
           <Nav.Item className="px-3 mx-2">Nosotros</Nav.Item>
