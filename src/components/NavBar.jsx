@@ -35,6 +35,9 @@ const NavBar = () => {
           />
         </Navbar.Brand>
         <Nav className="d-flex justify-content-between align-items-center px-1 w-auto">
+          <NavLink to="/" className="nav-link">
+            Inicio
+          </NavLink>
           <NavDropdown title="Productos">
             <NavDropdown.Item as={NavLink} to="/category/perro">
               Perros
@@ -43,8 +46,12 @@ const NavBar = () => {
               Gatos
             </NavDropdown.Item>
           </NavDropdown>
-          <Nav.Item className="px-3 mx-2">Contacto</Nav.Item>
-          <Nav.Item className="px-3 mx-2">Nosotros</Nav.Item>
+          <NavLink to="/contacto" className="nav-link">
+            Contacto
+          </NavLink>
+          <NavLink to="/nosotros" className="nav-link">
+            Nosotros
+          </NavLink>
         </Nav>
         <CartWidget />
       </Navbar>

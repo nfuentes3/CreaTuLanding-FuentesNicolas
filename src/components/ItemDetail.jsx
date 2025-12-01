@@ -1,6 +1,18 @@
-import { Card, Row, Col, Button } from "react-bootstrap";
+import { useState } from "react";
+import { Card, Row, Col, Button, Alert } from "react-bootstrap";
+import { Link } from "react-router-dom";
+import { useCart } from "../context/CartContext";
+import ItemCount from "./ItemCount";
 
 const ItemDetail = ({ product }) => {
+  const [quantityAdded, setQuantityAdded] = useState(0);
+  const { addToCart } = useCart();
+
+  const handleAdd = (quantity) => {
+    setQuantityAdded(quantity);
+    addToCart(product, quantity);
+  };
+
   return (
     <Card className="shadow-sm">
       <Row className="g-0">
@@ -27,10 +39,29 @@ const ItemDetail = ({ product }) => {
               $ {product.price}
             </Card.Text>
             <Card.Text className="mt-3">{product.description}</Card.Text>
-            <Card.Text className="mt-2">Stock: {product.stock}</Card.Text>
-            <div className="mt-4 d-flex gap-2">
-              <Button variant="primary">Agregar al carrito</Button>
-              <Button variant="outline-secondary">Volver</Button>
+
+            <div className="mt-4">
+              {quantityAdded > 0 ? (
+                <div className="d-flex flex-column gap-3">
+                  <Alert variant="success">
+                    ¡Producto agregado al carrito! ({quantityAdded} unidades)
+                  </Alert>
+                  <div className="d-flex gap-2">
+                    <Button as={Link} to="/cart" variant="primary">
+                      Ir al carrito
+                    </Button>
+                    <Button as={Link} to="/" variant="outline-secondary">
+                      Seguir comprando
+                    </Button>
+                  </div>
+                </div>
+              ) : (
+                <ItemCount
+                  stock={product.stock}
+                  initial={1}
+                  onAdd={handleAdd}
+                />
+              )}
             </div>
           </Card.Body>
         </Col>

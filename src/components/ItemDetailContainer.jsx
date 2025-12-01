@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { Container, Spinner, Alert } from "react-bootstrap";
-import { getProduct } from "../mock/AsyncService";
+import { getProductById } from "../service/firebase.jsx";
 import ItemDetail from "./ItemDetail";
 
 const ItemDetailContainer = () => {
   const { id } = useParams();
-  const [product, setProduct] = useState();
+  const [product, setProduct] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
@@ -14,18 +14,12 @@ const ItemDetailContainer = () => {
     setLoading(true);
     setError(null);
 
-    getProduct()
-      .then((response) => {
-        const pid = Number(id);
-        const found = response.find((p) => Number(p.id) === pid);
-        if (found) {
-          setProduct(found);
-        } else {
-          setError("Producto no encontrado");
-        }
+    getProductById(id)
+      .then((productData) => {
+        setProduct(productData);
       })
       .catch((err) => {
-        setError(typeof err === "string" ? err : "Error obteniendo producto");
+        setError(err.message);
       })
       .finally(() => {
         setLoading(false);
@@ -35,7 +29,17 @@ const ItemDetailContainer = () => {
   if (loading) {
     return (
       <Container className="py-5 d-flex justify-content-center">
-        <Spinner animation="border" role="status" />
+        <Spinner animation="border" role="status">
+          <span className="visually-hidden">Cargando...</span>
+        </Spinner>
+      </Container>
+    );
+  }
+
+  if (error) {
+    return (
+      <Container className="py-4">
+        <Alert variant="danger">{error}</Alert>
       </Container>
     );
   }

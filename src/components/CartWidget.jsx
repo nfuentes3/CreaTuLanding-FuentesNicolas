@@ -1,23 +1,28 @@
 import { Badge } from "react-bootstrap";
 import { FaShoppingCart } from "react-icons/fa";
-
-let ItemCount = 1; // Item hardcodeado para en un futuro agregar logica
+import { Link } from "react-router-dom";
+import { useCart } from "../context/CartContext";
 
 const CartWidget = () => {
+  const { getTotalQuantity } = useCart();
+  const totalItems = getTotalQuantity();
+
   return (
-    <a
-      className="cart-container position-relative d-flex align-items-center justify-content-end"
-      href="#home"
+    <Link
+      to="/cart"
+      className="cart-container position-relative d-flex align-items-center justify-content-end text-decoration-none"
     >
-      <FaShoppingCart size={24} href="#home" color="black" />
-      <Badge
-        bg="danger"
-        pill
-        className="position-absolute top-0 start-100 translate-middle"
-      >
-        {ItemCount}
-      </Badge>
-    </a>
+      <FaShoppingCart size={24} color="black" />
+      {totalItems > 0 && (
+        <Badge
+          bg="danger"
+          pill
+          className="position-absolute top-0 start-100 translate-middle"
+        >
+          {totalItems}
+        </Badge>
+      )}
+    </Link>
   );
 };
 
